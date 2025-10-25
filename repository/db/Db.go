@@ -9,6 +9,7 @@ type RepositoryWriter interface {
 	Open(driverName string, dataSourceName string) error
 	Close() error
 	Exec(sql string) error
+	ExecOrder(customer string, products []string, total float64, status string) error
 }
 
 type DB struct {
@@ -18,6 +19,14 @@ type DB struct {
 
 func (v *DB) Close() error {
 	err := v.Db.Close()
+	return err
+}
+
+func (v *DB) ExecOrder(customer string, products []string, total float64, status string) error {
+	_, err := v.Db.Exec(
+		"INSERT INTO orders (customer, products, total, status) VALUES (?, ?, ?, ?)",
+		customer, fmt.Sprintf("%v", products), total, status,
+	)
 	return err
 }
 
