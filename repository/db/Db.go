@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-type Idb interface {
+type RepositoryWriter interface {
 	Open(driverName string, dataSourceName string) error
 	Close() error
 	Exec(sql string) error

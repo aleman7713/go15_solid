@@ -1,5 +1,5 @@
 package notification
 
-type Notification interface {
+type Notifier interface {
 	Send(type1 int)
 }

@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	var db db1.Idb = &db1.DB {}
+	var db db1.RepositoryWriter = &db1.DB{}
 
 	err := db.Open("sqlite3", "orders.db")
 
